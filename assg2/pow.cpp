@@ -16,7 +16,15 @@ int main(){
     float a,b;
     cin>>a;
     cin>>b;
-    
+    if(b==0){
+        cout<<"1";
+    }
+    else if(b>0 ){   
     cout<<power(a, b);
+    }
+    else{
+        cout<<1/power(a,-b);
+    }
+    
     
 }
