@@ -1,37 +1,34 @@
-#include<bits/stdc++.h>
-using namespace std;
-int f(int a, vector<int> &b, int i){
-    if(i==0){
-        return ((int)(a/b[0]));
+public class Solution {
+    public int[] solve(int A, int[] B) {
+      int min=Integer.MAX_VALUE;
+      int t=0;
+      for(int i=0; i<B.length;i++){
+          int v= B[i];
+        //   min = Math.min(v, min);
+          if(v<min){
+              min= v;
+              t=i;
+          }
+      }
+      int c= A/min;
+      int remain= A%min;
+      int[] arr= new int[c];
+      for(int i=0; i<arr.length; i++){
+          arr[i]= t;
+      }
+      int i=0;
+      int j=0;
+      while(i<B.length && j<arr.length){
+          int idx= arr[j];
+          if(B[i]-B[idx]<=remain){
+              arr[j]= i;
+              remain-=(B[i]-B[idx]);
+              j++;
+          }
+          else i++;
+      }
+      
+      return arr;
+      
     }
-    int npick = f(a, b, i-1);
-    
-    int pick = 0;
-    if(b[i]<=a){
-        
-         pick = f(a-b[i], b,  i-1)+1;
-    }
-    return max(pick, npick);
-   
-}
-
-int solve(int a, vector<int> &b){
-    // vector<int> ans;
-    int ans = f(a, b, b.size()-1);
-    return ans;
-
-}
-int main()
-{
-    // int a = 12;
-  
-    // vector<int> b = {3, 4};
-    int a = 11;
-    vector<int> b = {6, 8, 5, 4, 7};
-    cout<<solve(a, b);
-    // vector<int> ans = solve(a, b);
-    // for(auto it: ans){
-    //     cout<<it<<" ";
-    // }
- return 0;
 }
